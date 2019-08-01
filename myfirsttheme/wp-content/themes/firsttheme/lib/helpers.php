@@ -1,19 +1,43 @@
 <?php
 
-//Site wide function for extarcting a variety of post meta
-//Enusre fnuction name is unique for submission to theme markets, avoiding conflicts
-//IMPORTANT-----URL/Htmla and Attributes escaped as standard
+//---Site wide function for extarcting a variety of post meta
+//---Enusre fnuction name is unique for submission to theme markets, avoiding conflicts
+//---IMPORTANT-----URL/Htmla and Attributes escaped as standard
+
 function firsttheme_post_meta()
 {
-    echo 'Posted on ';
-    echo '<a href="' . esc_url(get_permalink()) . '">';
-    echo '<time datetime="' . esc_attr(get_the_date('c')) . '">' . esc_html(get_the_date()) . '</time></a>';
-    echo ' By <a href="' . esc_url(get_author_posts_url(get_the_author_meta('ID'))) . '">' . esc_html(get_the_author()) . '</a>';
+    /*---Addition of printf function to translate strings in function---*/
+    /*translators: %s: Post date*/
+    printf(
+        esc_html__('Posted on %s', 'myfirsttheme'),
+        '<a href="' . esc_url(get_permalink()) . '">
+        <time datetime="' . esc_attr(get_the_date('c')) . '">' . esc_html(get_the_date()) . '</time></a>'
+    );
+    /*translators: %s: Author name*/
+    printf(
+        esc_html__(' By %s', 'myfirsttheme'),
+        '<a href="' . esc_url(get_author_posts_url(get_the_author_meta('ID'))) . '">' . esc_html(get_the_author()) .
+            '</a>'
+    );
 }
 
 //Concatenated function for site wide Read more links
 function firsttheme_readmore_link()
 {
-    echo '<a href="' . esc_url(get_the_permalink()) . '" title="' . the_title_attribute(['echo' => false]) . '">';
-    echo ' Read More  <span class="u-screen-reader-text">About: ' . get_the_title() . '</span></a>';
+    echo '<a href="' . esc_url(get_permalink()) . '" title="' . the_title_attribute(['echo' => false]) . '">';
+
+    /*translators: %s: Post title*/
+    printf(
+        //Strip the span tags and add them to the array of allowed html alongwith any classes to be used
+        wp_kses(
+            __('Read More  <span class="u-screen-reader-text">About: %s</span>', 'myfirsttheme'),
+            [
+                'span' => [
+                    'class' => []
+                ]
+            ]
+        ),
+        get_the_title()
+    );
+    echo '</a>';
 }

@@ -19,8 +19,8 @@
     <?php } ?>
     <?php the_posts_pagination(); ?>
 <?php } else { ?>
-    <p>Sorry, no posts matched your criteria</p>
+    <!--Wrap all text strings in translation function-->
+    <p><?php esc_html_e('Sorry, no posts matched your criteria', 'myfirsttheme'); ?></p>
 <?php } ?>
-
 
 <?php get_footer(); ?>
