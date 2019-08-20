@@ -8,6 +8,7 @@ import sourcemaps from 'gulp-sourcemaps';
 import imagemin from 'gulp-imagemin';
 import del from 'del';
 import webpack from 'webpack-stream';
+import named from 'vinyl-named';
 
 const PRODUCTION = yargs.argv.prod;
 
@@ -21,7 +22,7 @@ const paths = {
         dest: 'dist/assets/images'
     },
     scrips: {
-        src: 'src/assets/js/bundle.js',
+        src: ['src/assets/js/bundle.js', 'src/assets/js/admin.js'],
         dest: 'dist/assets/js'
     },
     other: {
@@ -49,6 +50,7 @@ export const styles = () => {
 //For running the watch scss folder
 export const watch = () => {
     gulp.watch('src/assets/scss/**/*.scss', styles);
+    gulp.watch('src/assets/js/**/*.js', scripts);
     gulp.watch(paths.images.src, images);
     gulp.watch(paths.other.src, copy);
 }
@@ -63,6 +65,7 @@ export const images = () => {
 //For compiling js scripts
 export const scripts = () => {
     return gulp.src(paths.scrips.src)
+        .pipe(named())
         .pipe(webpack({
             module: {
                 rules: [{
@@ -76,7 +79,7 @@ export const scripts = () => {
                 }]
             },
             output: {
-                filename: 'bundle.js'
+                filename: '[name].js'
             },
             devtool: !PRODUCTION ? 'inline-source-map' : false,
             //devtool: 'inline-source-map',
@@ -93,9 +96,9 @@ export const copy = () => {
 }
 
 //For running tasks concurrently
-export const dev = gulp.series(clean, gulp.parallel(styles, images), copy, watch);
+export const dev = gulp.series(clean, gulp.parallel(styles, scripts, images), copy, watch);
 
-export const build = gulp.series(clean, gulp.parallel(styles, images), copy);
+export const build = gulp.series(clean, gulp.parallel(styles, scripts, images), copy);
 
 //Set default task to development task
 export default dev;
