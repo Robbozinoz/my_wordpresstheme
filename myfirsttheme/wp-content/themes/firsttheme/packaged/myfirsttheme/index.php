@@ -7,20 +7,20 @@
 </h2>
 <div>
     <!---See functions.php for setting oof which meta is extracted for the current post--->
-    <?php _themename_post_meta() ?>
+    <?php firsttheme_post_meta() ?>
 </div>
 <div>
     <?php the_excerpt() ?>
 </div>
 
 <!--This is to attach the current posts read more link - including span for accessibility-->
-<?php _themename_readmore_link(); ?>
+<?php firsttheme_readmore_link(); ?>
 
 <?php } ?>
 <?php the_posts_pagination(); ?>
 <?php } else { ?>
 <!--Wrap all text strings in translation function-->
-<p><?php esc_html_e('Sorry, no posts matched your criteria', '_themename'); ?></p>
+<p><?php esc_html_e('Sorry, no posts matched your criteria', 'myfirsttheme'); ?></p>
 <?php } ?>
 
 <?php get_footer(); ?>

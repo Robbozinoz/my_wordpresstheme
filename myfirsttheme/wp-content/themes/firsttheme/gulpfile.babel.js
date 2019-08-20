@@ -10,6 +10,9 @@ import del from 'del';
 import webpack from 'webpack-stream';
 import named from 'vinyl-named';
 import browserSync from 'browser-sync';
+import zip from 'gulp-zip';
+import replace from 'gulp-replace';
+import info from './package.json';
 
 
 const server = browserSync.create();
@@ -31,6 +34,13 @@ const paths = {
     other: {
         src: ['src/assets/**/*', '!src/assets/{images,js,scss}', '!src/assets/{images, js, scss}/**/*'],
         dest: 'dist/assets'
+    },
+    package: {
+        src: ['**/*', '!.vscode', '!.vscode', '!myfirsttheme_space.code-workspace',
+            '!node_modules{,/**}', '!packaged{,/**}', '!src{,/**}', '!.babelrc',
+            '!.gitignore', '!gulpfile.babel.js', '!package.json', '!package-lock.json'
+        ],
+        dest: 'packaged'
     }
 }
 
@@ -120,10 +130,20 @@ export const copy = () => {
         .pipe(gulp.dest(paths.other.dest));
 }
 
+//Task for compresss theme zip for users
+export const compress = () => {
+    return gulp.src(paths.package.src)
+        .pipe(replace('_themename', info.name))
+        .pipe(zip(`${info.name}.zip`))
+        .pipe(gulp.dest(paths.package.dest));
+}
+
 //For running tasks concurrently
 export const dev = gulp.series(clean, gulp.parallel(styles, scripts, images), copy, serve, watch);
 
 export const build = gulp.series(clean, gulp.parallel(styles, scripts, images), copy);
+
+export const bundle = gulp.series(build, compress);
 
 //Set default task to development task
 export default dev;

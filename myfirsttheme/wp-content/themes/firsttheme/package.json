@@ -8,7 +8,8 @@
   },
   "scripts": {
     "start": "gulp",
-    "build": "gulp build --prod"
+    "build": "gulp build --prod",
+    "bundle": "gulp build --prod"
   },
   "author": "John Robertson",
   "license": "MIT",
@@ -23,8 +24,12 @@
     "gulp-clean-css": "^4.2.0",
     "gulp-if": "^3.0.0",
     "gulp-imagemin": "^6.0.0",
+    "gulp-replace": "^1.0.0",
     "gulp-sass": "^4.0.2",
     "gulp-sourcemaps": "^2.6.5",
+    "gulp-zip": "^5.0.0",
+    "install": "^0.13.0",
+    "npm": "^6.10.3",
     "npm-install-peers": "^1.2.1",
     "vinyl-named": "^1.1.0",
     "webpack-stream": "^5.2.1",
