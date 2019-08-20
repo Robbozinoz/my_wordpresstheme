@@ -81,11 +81,17 @@ export const scripts = () => {
             output: {
                 filename: '[name].js'
             },
+
+            //Assign $ to jquery global variable
+            externals: {
+                jquery: 'jQuery'
+            },
+
             devtool: !PRODUCTION ? 'inline-source-map' : false,
             //devtool: 'inline-source-map',
             mode: PRODUCTION ? 'production' : 'development' //add this
         }))
-        //.pipe(gulpif(PRODUCTION, uglify())) //you can skip this now since mode will already minify
+        //.pipe(gulpif(PRODUCTION, uglify())) //Not required ni Webpack minification
         .pipe(gulp.dest(paths.scrips.dest));
 }
 
