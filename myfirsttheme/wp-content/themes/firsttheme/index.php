@@ -18,9 +18,13 @@
 
 <?php } ?>
 <?php the_posts_pagination(); ?>
+
+<!--Action example-->
+<?php do_action('_themename_after_pagination'); ?>
+
 <?php } else { ?>
 <!--Wrap all text strings in translation function-->
-<p><?php esc_html_e('Sorry, no posts matched your criteria', '_themename'); ?></p>
+<p><?php echo apply_filters('_themename_myfirsttheme_no_post_text', esc_html__('Sorry, no posts matched your criteria', '_themename')); ?></p>
 <?php } ?>
 
 <?php get_footer(); ?>

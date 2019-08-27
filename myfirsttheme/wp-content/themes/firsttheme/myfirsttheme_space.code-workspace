@@ -1,7 +1,12 @@
 {
-  "folders": [{
-    "path": "C:\\laragon\\www\\JAR\\my_wordpresstheme"
-  }],
+  "folders": [
+    {
+      "path": "C:\\laragon\\www\\JAR\\my_wordpresstheme"
+    },
+    {
+      "path": "C:\\laragon\\www\\JAR\\my_wordpresstheme\\myfirsttheme\\wp-content\\themes\\firsttheme-child"
+    }
+  ],
   "settings": {
     "jshint.enable": false
   }

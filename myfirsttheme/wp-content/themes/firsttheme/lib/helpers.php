@@ -4,21 +4,23 @@
 //---Enusre fnuction name is unique for submission to theme markets, avoiding conflicts
 //---IMPORTANT-----URL/Htmla and Attributes escaped as standard
 
-function _themename_post_meta()
-{
-    /*---Addition of printf function to translate strings in function---*/
-    /*translators: %s: Post date*/
-    printf(
-        esc_html__('Posted on %s', '_themename'),
-        '<a href="' . esc_url(get_permalink()) . '">
-        <time datetime="' . esc_attr(get_the_date('c')) . '">' . esc_html(get_the_date()) . '</time></a>'
-    );
-    /*translators: %s: Author name*/
-    printf(
-        esc_html__(' By %s', '_themename'),
-        '<a href="' . esc_url(get_author_posts_url(get_the_author_meta('ID'))) . '">' . esc_html(get_the_author()) .
-            '</a>'
-    );
+if (!function_exists('_themename_post_meta')) {
+    function _themename_post_meta()
+    {
+        /*---Addition of printf function to translate strings in function---*/
+        /*translators: %s: Post date*/
+        printf(
+            esc_html__('Posted on %s', '_themename'),
+            '<a href="' . esc_url(get_permalink()) . '">
+                <time datetime="' . esc_attr(get_the_date('c')) . '">' . esc_html(get_the_date()) . '</time></a>'
+        );
+        /*translators: %s: Author name*/
+        printf(
+            esc_html__(' By %s', '_themename'),
+            '<a href="' . esc_url(get_author_posts_url(get_the_author_meta('ID'))) . '">' . esc_html(get_the_author()) .
+                '</a>'
+        );
+    }
 }
 
 //Concatenated function for site wide Read more links
