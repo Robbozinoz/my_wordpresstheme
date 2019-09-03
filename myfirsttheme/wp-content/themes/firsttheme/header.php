@@ -9,7 +9,7 @@
 </head>
 
 <body <?php body_class(); ?>>
-
+    <a class="u-skip-link" href="#content"><?php esc_attr_e('Skip to Content', '_themename'); ?></a>
     <header class="u-margin-bottom-40" role="banner">
         <div class="c-header">
             <div class="o-container u-flex u-align-justify u-align-middle">
