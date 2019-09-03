@@ -1,2 +1,3 @@
-import './components/slider';
 import $ from 'jquery';
+import './components/slider';
+import './components/navigation';

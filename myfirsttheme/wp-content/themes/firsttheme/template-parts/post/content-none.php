@@ -1,0 +1,2 @@
+    <!--Wrap all text strings in translation function-->
+    <p><?php echo apply_filters('_themename_myfirsttheme_no_post_text', esc_html__('Sorry, no posts matched your criteria', '_themename')); ?></p>
