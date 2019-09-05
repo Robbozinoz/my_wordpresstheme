@@ -1,5 +1,5 @@
 <?php
-$footer_bg = 'dark';
+$footer_bg = _themename_sanitize_footer_bg(get_theme_mod('_themename_footer_bg', 'dark'));
 $site_info = get_theme_mod('_themename_site_info', '');
 ?>
 <!--Only display if has value-->
@@ -9,6 +9,7 @@ $site_info = get_theme_mod('_themename_site_info', '');
         <div class="o-container">
             <div class="o-row">
                 <div class="o-row__column o-row__column--span-12 c-site-info__text">
+                    <!--Array to allow certain attributes  in footer-->
                     <?php
                         $allowed = array('a' => array(
                             'href' => array(),
