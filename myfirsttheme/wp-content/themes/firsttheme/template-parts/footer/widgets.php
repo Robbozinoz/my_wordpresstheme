@@ -1,6 +1,8 @@
 <?php
-//Taken from sidebars.php as variable to set background
-$footer_layout = '3,3,3,3';
+//Get and check customiser function to addd controls for footer layout
+$footer_layout = sanitize_text_field(get_theme_mod('_themename_footer_layout', '3,3,3,3'));
+//Extract user errors in customiser field
+$footer_layout = preg_replace('/\s+/', '', $footer_layout);
 $columns = explode(',', $footer_layout);
 $footer_bg = _themename_sanitize_footer_bg(get_theme_mod('_themename_footer_bg', 'dark'));
 $widgets_active = false;

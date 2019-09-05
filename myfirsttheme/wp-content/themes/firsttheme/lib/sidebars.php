@@ -13,11 +13,13 @@ function _themename_sidebar_widgets()
     ));
 }
 
-$footer_layout = '3,3,3,3';
+//Get and check customiser function to addd controls for footer layout
+$footer_layout = sanitize_text_field(get_theme_mod('_themename_footer_layout', '3,3,3,3'));
+//Extarct user errors in customiser field
+$footer_layout = preg_replace('/\s+/', '', $footer_layout);
 $columns = explode(',', $footer_layout);
 $footer_bg = _themename_sanitize_footer_bg(get_theme_mod('_themename_footer_bg', 'dark'));
 //Set theme of sidebar area for footer
-
 if ($footer_bg == 'light') {
     $widget_theme = 'c-footer-widget--dark';
 } else {
