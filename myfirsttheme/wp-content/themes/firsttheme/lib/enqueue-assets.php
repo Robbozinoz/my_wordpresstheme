@@ -31,7 +31,10 @@ function _themename_customize_preview_js()
 {
     wp_enqueue_script('_themename-cutomize-preview', get_template_directory_uri() . '/dist/assets/js/customize-preview.js', array('customize-preview', 'jquery'), '1.0.0', true);
 
+    //Make inline styles avriable available to the localize script
     include(get_template_directory() . '/lib/inline-css.php');
+
+    //Use core wp function which makes php variables available to Javascript
     wp_localize_script('_themename-cutomize-preview', '_themename', array('inline-css' => $inline_styles_selectors));
 }
 
