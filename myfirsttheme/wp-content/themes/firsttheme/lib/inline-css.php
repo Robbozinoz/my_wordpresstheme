@@ -11,12 +11,13 @@ $inline_styles_selectors = array(
     '.c-post.sticky' => array(
         'border-left-color' => '_themename_accent_colour',
     ),
-    'button, input[type=submit], .header-nav .menu > .menu-item:not(.mega) .sub-menu .menu-item:hover > a' => array(
+    'button, input[type=submit], .header-nav .menu > .menu-item:not(.mega) .sub-menu .menu-item:hover > a, .navigation.pagination .nav-links a:hover, .navigation.pagination .nav-links a:hover' => array(
         'background-color' => '_themename_accent_colour',
     ),
     '.header-nav .menu > .menu-item.mega > .sub-menu > .menu-item > a:hover, .header-nav .menu > .menu-item.mega > .sub-menu > .menu-item > .sub-menu a:hover' => array(
         'color' => '_themename_accent_colour',
     )
+
 );
 
 //Set variable to empty string
