@@ -11,7 +11,7 @@ function _themename_register_menus()
 
 add_action('init', '_themename_register_menus');
 
-//Accessibility funfilter for menu anchor tags
+//Accessibility filter for menu anchor tags
 function _themename_aria_hasdropdown($atts, $item, $args)
 {
     if ($args->theme_location == 'main-menu') {
