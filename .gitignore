@@ -23,33 +23,29 @@
 
 # Ignore everything in the root except the "wp-content" directory.
 /*
-!.gitignore
-!myfirsttheme/wp-content
+.gitignore
+myfirsttheme/wp-admin/
+myfirsttheme/wp-includes/
+!myfirsttheme/wp-content/
 
 
 
 # Ignore everything in the "wp-content" directory, except the "plugins"
 # and "themes" directories.
-myfirsttheme/wp-content/themes/firsttheme/node_modules/*
-myfirsttheme/wp-admin/*
-myfirsttheme/wp-includes/*
-myfirsttheme/wp-content/plugins/_themename-metaboxes/node_modules/*
+myfirsttheme/wp-content/themes/firsttheme/node_modules/
+myfirsttheme/wp-content/plugins/_themename-metaboxes/node_modules/
 
 
 # Ignore everything in the "plugins" directory, except the plugins you
 # specify (see the commented-out examples for hints on how to do this.)
-myfirsttheme/wp-content/plugins/akismet/*
-myfirsttheme/wp-content/plugins/theme-check/*
-myfirsttheme/wp-content/plugins/wordpress-importer/*
-!myfirsttheme/wp-content/plugins/_themename-metaboxes/*
 
 # Ignore everything in the "themes" directory, except the themes you
 # specify (see the commented-out example for a hint on how to do this.)
-wp-content/myfirsttheme/themes/twentynineteen/*
-wp-content/myfirsttheme/themes/twentyseventeen/*
-wp-content/myfirsttheme/themes/twentysixteen/*
-!wp-content/myfirsttheme/themes/firsttheme/*
-!wp-content/myfirsttheme/themes/firsttheme-child/*
+wp-content/myfirsttheme/themes/twentynineteen/
+wp-content/myfirsttheme/themes/twentyseventeen/
+wp-content/myfirsttheme/themes/twentysixteen/
+!wp-content/myfirsttheme/themes/firsttheme/
+!wp-content/myfirsttheme/themes/firsttheme-child/
 
 #ignore specific files
-.code-workspace
+*.code-workspace
