@@ -55,9 +55,9 @@ function myfirsttheme_no_post_text($text)
 add_filter('_themename_myfirsttheme_no_post_text', 'myfirsttheme_no_post_text');
 
 //Simple filter on core hook
-function filter_title($title)
-{
-    return 'Filtered ' . $title;
-}
+//function filter_title($title)
+//{
+  //  return 'Filtered ' . $title;
+//}
 
-add_filter('the_title', 'filter_title');
+//add_filter('the_title', 'filter_title');
