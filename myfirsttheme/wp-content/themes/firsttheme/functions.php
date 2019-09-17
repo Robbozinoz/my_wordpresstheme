@@ -6,11 +6,16 @@ require_once('lib/enqueue-assets.php');
 require_once('lib/sidebars.php');
 require_once('lib/theme-support.php');
 require_once('lib/navigation.php');
+require_once('lib/metaboxes.php');
 
 //To check the delete action and complete 
 function _themename_handle_delete_post()
 {
     if (isset($_GET['action']) && $_GET['action'] === '_themename_delete_post') {
+        //INitiate delete only if nonce is verified
+        if (!isset($_GET['nonce']) || !wp_verify_nonce($_GET['nonce'], '_themename_delete_post' . $_GET['post'])) {
+            return;
+        }
         //Check that a post has been retrieved and attach value to $post_id
         $post_id = isset($_GET['post']) ? $_GET['post'] : null;
         //If a post id is returned get the post content

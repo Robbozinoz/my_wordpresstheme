@@ -49,7 +49,8 @@ function _themename_delete_post()
 {
     $url = add_query_arg([
         'action' => '_themename_delete_post',
-        'post' => get_the_ID()
+        'post' => get_the_ID(),
+        'nonce' => wp_create_nonce('_themename_delete_post' . get_the_ID())
     ], home_url());
 
     //if the user has permission to delete display the "Delete" button

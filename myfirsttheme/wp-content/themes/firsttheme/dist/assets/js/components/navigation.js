@@ -11,6 +11,7 @@ $('.c-navigation').on('mouseenter', '.menu-item-has-children', (e) => {
 });
 
 
+////On clicking an open submenu find show/hide classes and apply aria hidden logic using parent sibling dom control
 //On click change aria hidden and aria expanded attributes to opposite to enable screen reader access
 $('.c-navigation').on('click', '.menu .menu-button', (e) => {
     e.preventDefault();

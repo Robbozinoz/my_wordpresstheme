@@ -14,4 +14,8 @@
     <?php _themename_readmore_link(); ?>
     <!--Function to check user capabilities-->
     <?php echo _themename_delete_post(); ?>
+    <!--Var dump to test Custom Field Meta-->
+    <?php //var_dump(get_post_meta(get_the_ID(), 'Price', true)) 
+    ?>
+
 </article>
