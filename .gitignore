@@ -33,11 +33,13 @@ myfirsttheme/wp-includes/
 # Ignore everything in the "wp-content" directory, except the "plugins"
 # and "themes" directories.
 myfirsttheme/wp-content/themes/firsttheme/node_modules/
-myfirsttheme/wp-content/plugins/_themename-metaboxes/node_modules/
+
 
 
 # Ignore everything in the "plugins" directory, except the plugins you
 # specify (see the commented-out examples for hints on how to do this.)
+myfirsttheme/wp-content/plugins/_themename-metaboxes/node_modules/
+!myfirsttheme/wp-content/plugins/_themename-metaboxes/
 
 # Ignore everything in the "themes" directory, except the themes you
 # specify (see the commented-out example for a hint on how to do this.)
