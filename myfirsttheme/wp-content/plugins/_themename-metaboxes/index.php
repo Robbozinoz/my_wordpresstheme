@@ -18,5 +18,6 @@ if (!defined('WPINC')) {
     die;
 }
 
-//Include the metaboxes code
+//Include the metaboxes and assets code
 include_once('includes/metaboxes.php');
+include_once('includes/enqueue-assets.php');
