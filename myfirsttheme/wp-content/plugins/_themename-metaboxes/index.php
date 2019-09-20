@@ -12,7 +12,7 @@ Text Domain: _themename-_pluginname
 Domain Path: /languages
 */
 
-//This stops unauthorised access to index.php file
+//This stops unauthorised access to index.php file using session authentication
 
 if (!defined('WPINC')) {
     die;
