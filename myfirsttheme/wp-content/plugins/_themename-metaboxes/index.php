@@ -17,3 +17,6 @@ Domain Path: /languages
 if (!defined('WPINC')) {
     die;
 }
+
+//Include the metaboxes code
+include_once('includes/metaboxes.php');
