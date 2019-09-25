@@ -1,5 +1,5 @@
 {
-  "name": "firsttheme",
+  "name": "myfirsttheme",
   "version": "1.0.0",
   "description": "Parent Wordpress Theme",
   "main": "index.js",
@@ -9,7 +9,7 @@
   "scripts": {
     "start": "gulp",
     "build": "gulp build --prod",
-    "bundle": "gulp build --prod"
+    "bundle": "gulp bundle --prod"
   },
   "author": "John Robertson",
   "license": "MIT",

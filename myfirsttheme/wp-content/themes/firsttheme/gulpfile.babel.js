@@ -133,7 +133,7 @@ export const copy = () => {
 //Task for compresss theme zip for users
 export const compress = () => {
     return gulp.src(paths.package.src)
-        .pipe(replace('_themename', info.name))
+        .pipe(gulpif((file) => (file.relative.split('.').pop() !== 'zip'), replace('_themename', info.name)))
         .pipe(zip(`${info.name}.zip`))
         .pipe(gulp.dest(paths.package.dest));
 }
