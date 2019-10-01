@@ -18,6 +18,7 @@ $sidebar = is_active_sidebar('primary-sidebar');
                     <?php while (have_posts()) { ?>
                         <?php the_post(); ?>
                         <?php get_template_part('template-parts/post/content', ''); ?>
+                        <?php get_template_part('template-parts/single/author', ''); ?>
                     <?php } ?>
                 <?php } else { ?>
                     <?php get_template_part('template-parts/post/content', 'none'); ?>
