@@ -32,7 +32,7 @@ add_action('_themename_after_pagination', 'after_pagination');
 add_action('_themename_after_pagination', 'after_pagination2');
 
 //Testing of add and remove action functions from core
-add_action('pre_get_posts', 'function_to_add', 10, 1);
+//add_action('pre_get_posts', 'function_to_add', 10, 1);
 
 function function_to_add($query)
 {
