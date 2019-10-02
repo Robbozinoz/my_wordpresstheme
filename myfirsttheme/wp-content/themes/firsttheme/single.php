@@ -18,7 +18,15 @@ $sidebar = is_active_sidebar('primary-sidebar');
                     <?php while (have_posts()) { ?>
                         <?php the_post(); ?>
                         <?php get_template_part('template-parts/post/content', ''); ?>
-                        <?php get_template_part('template-parts/single/author', ''); ?>
+
+                        <?php
+                                //Get the Author Bio checkbox result from the customisor
+                                if (get_theme_mod('_themename_display_author_info', true)) { ?>
+                            <?php get_template_part('template-parts/single/author', ''); ?>
+                        <?php } ?>
+
+                        <?php get_template_part('template-parts/single/navigation', ''); ?>
+
                     <?php } ?>
                 <?php } else { ?>
                     <?php get_template_part('template-parts/post/content', 'none'); ?>

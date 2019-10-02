@@ -8,6 +8,17 @@ wp.customize('blogname', (value) => {
     })
 })
 
+//Bind author info checkbox to to hrml by class name
+wp.customize('_themename_display_author_info', (value) => {
+    value.bind((to) => {
+        if (to) {
+            $('.c-post-author').show();
+        } else {
+            $('.c-post-author').hide();
+        }
+    })
+})
+
 //Bind customisor api to html selected by id name for inline style
 wp.customize('_themename_accent_colour', (value) => {
     value.bind((to) => {
