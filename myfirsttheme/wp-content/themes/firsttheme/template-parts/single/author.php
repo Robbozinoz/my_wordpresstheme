@@ -28,10 +28,11 @@
             <a href="<?php echo esc_url($author_posts_url); ?>">
                 <?php
                 //Apply internationalisation to author post number 
+                /* translators: %s is the number of posts */
                 printf(
                     esc_html(_n('%s post', '%s posts', $author_posts, '_themename')),
                     number_format_i18n($author_posts)
-                )
+                );
                 ?>
             </a>
         </div>
