@@ -26,23 +26,15 @@
 .gitignore
 myfirsttheme/wp-admin/
 myfirsttheme/wp-includes/
-add .
-
-
-# Ignore everything in the "wp-content" directory, except the "plugins"
-# and "themes" directories.
 myfirsttheme/wp-content/themes/firsttheme/node_modules/
-
-
-# Ignore everything in the "plugins" directory, except the plugins you
-# specify (see the commented-out examples for hints on how to do this.)
-
-
-# Ignore everything in the "themes" directory, except the themes you
-# specify (see the commented-out example for a hint on how to do this.)
+myfirsttheme/wp-content/plugins/_themename-metaboxes/node_modules/
+myfirsttheme/wp-content/plugins/_themename-shortcodes/node_modules/
+myfirsttheme/wp-content/plugins/_themename-shortcodes/dist/
+firsttheme-master/
+docs/
+index.php
+add .*
 myfirsttheme/wp-content/myfirsttheme/themes/twentynineteen/
 myfirsttheme/wp-content/myfirsttheme/themes/twentyseventeen/
 myfirsttheme/wp-content/myfirsttheme/themes/twentysixteen/
-
-#ignore specific files
 *.code-workspace
