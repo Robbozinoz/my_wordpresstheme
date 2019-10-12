@@ -32,7 +32,7 @@ const paths = {
         dest: 'dist/assets/js'
     },
     plugins: {
-        src: ['../../plugins/_themename-metaboxes/packaged/*'],
+        src: ['../../plugins/_themename-metaboxes/packaged/*', '../../plugins/_themename-shortcodes/packaged/*'],
         dest: 'lib/plugins'
     },
     other: {

@@ -8,6 +8,9 @@
     },
     {
       "path": "C:\\laragon\\www\\JAR\\my_wordpresstheme\\myfirsttheme\\wp-content\\plugins\\_themename-metaboxes"
+    },
+    {
+      "path": "C:\\laragon\\www\\JAR\\my_wordpresstheme\\myfirsttheme\\wp-content\\plugins\\_themename-shortcodes"
     }
   ],
   "settings": {

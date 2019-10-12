@@ -9,6 +9,7 @@ require_once('lib/navigation.php');
 require_once('lib/include-plugins.php');
 require_once('lib/comment-callback.php');
 
+
 //To check the delete action and complete 
 function _themename_handle_delete_post()
 {

@@ -36,7 +36,7 @@ function _themename_comment_callback($comment, $args, $depth)
                     <?php } ?>
 
                     <?php
-                        echo $comment->comment_type;
+                        //echo $comment->comment_type;
                         //Check to see if the comment is a ping or track and if the short_ping arg is false, then deliver entire comment text
                         if ($comment->comment_type == 'comment' || (($comment->comment_type == 'pingback' || $comment->comment_type == 'trackback') && !$args['short_ping'])) {
                             comment_text();
