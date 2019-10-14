@@ -18,11 +18,20 @@ if (!defined('WPINC')) {
     die;
 }
 
+//Function prioritised to run last to remove any empty p tags from the browser
+function _themename__pluginname_clean_p_tags($content)
+{
+    return preg_replace('#<p>(\s|&nbsp;)*+(<br\s*/*>)*(\s|&nbsp;)*</p>#i', '', force_balance_tags($content));
+}
+
+add_filter('the_content', '_themename__pluginname_clean_p_tags', 20, 1);
 
 function _themename__pluginname_init()
 {
     //Include the button shortcode function
     include_once('includes/shortcodes/button/button.php');
+    //Include the slider shortcode function
+    include_once('includes/shortcodes/slider/slider.php');
 }
 
 add_action('init', '_themename__pluginname_init');

@@ -34,5 +34,8 @@
     "vinyl-named": "^1.1.0",
     "webpack-stream": "^5.2.1",
     "yargs": "^13.3.0"
+  },
+  "dependencies": {
+    "slick-carousel": "^1.8.1"
   }
 }

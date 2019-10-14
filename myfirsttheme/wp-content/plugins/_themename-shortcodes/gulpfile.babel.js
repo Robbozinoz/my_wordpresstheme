@@ -59,8 +59,8 @@ export const styles = () => {
 
 //For running the watch scss folder
 export const watch = () => {
-    gulp.watch('src/assets/scss/**/*.scss', styles);
-    gulp.watch('src/assets/js/**/*.js', scripts);
+    gulp.watch(['src/assets/scss/**/*.scss', 'includes/**/*.scss'], styles);
+    gulp.watch(['src/assets/js/**/*.js', 'includes/**/*.js'], scripts);
     gulp.watch(paths.images.src, images);
     gulp.watch(paths.other.src, copy);
 }
