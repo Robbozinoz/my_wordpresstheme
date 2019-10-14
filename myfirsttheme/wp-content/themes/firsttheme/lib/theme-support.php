@@ -12,6 +12,15 @@ function _themename_theme_support()
         'flex-height' => true,
         'flex-width' => true
     ));
+    add_theme_support('post-formats', array(
+        'aside',
+        'image',
+        'video',
+        'quote',
+        'link',
+        'gallery',
+        'audio'
+    ));
     add_theme_support('align-wide');
     add_theme_support('editor-styles');
     add_editor_style('dist/assets/css/editor.css');

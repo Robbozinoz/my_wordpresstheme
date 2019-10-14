@@ -1,10 +1,20 @@
+<?php
+$content = apply_filters('the_content', get_the_content());
+$videos = get_media_embedded_in_content($content, array('audio', 'iframe'));
+?>
 <article <?php post_class('c-post u-margin-bottom-20'); ?>>
 
     <div class="c-post__inner">
 
-        <?php if (get_the_post_thumbnail() !== "") { ?>
+        <!--Check to see if videos if empty-->
+        <?php if (get_the_post_thumbnail() !== '' && (empty($audios) || is_single())) { ?>
             <div class="c-post__thumbnail">
                 <?php the_post_thumbnail('large'); ?>
+            </div>
+        <?php } ?>
+        <?php if (!is_single() && !empty($audios)) { ?>
+            <div class="c-post__audio">
+                <?php echo $audios[0]; ?>
             </div>
         <?php } ?>
 
