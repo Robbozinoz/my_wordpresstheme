@@ -5,7 +5,7 @@
         <!--Check to see if videos if empty-->
         <?php if (get_the_post_thumbnail() !== '' && (!get_post_gallery() || is_single())) { ?>
             <div class="c-post__thumbnail">
-                <?php the_post_thumbnail('large'); ?>
+                <?php the_post_thumbnail('_themename-blog-image'); ?>
             </div>
         <?php } ?>
 
