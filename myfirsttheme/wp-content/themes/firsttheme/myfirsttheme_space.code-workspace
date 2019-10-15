@@ -11,6 +11,9 @@
     },
     {
       "path": "C:\\laragon\\www\\JAR\\my_wordpresstheme\\myfirsttheme\\wp-content\\plugins\\_themename-shortcodes"
+    },
+    {
+      "path": "C:\\laragon\\www\\JAR\\my_wordpresstheme\\myfirsttheme\\wp-content\\plugins\\_themename-post-types"
     }
   ],
   "settings": {

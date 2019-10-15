@@ -9,18 +9,15 @@ import imagemin from 'gulp-imagemin';
 import del from 'del';
 import webpack from 'webpack-stream';
 import named from 'vinyl-named';
-import browserSync from 'browser-sync';
 import zip from 'gulp-zip';
 import replace from 'gulp-replace';
 import info from './package.json';
 
-
-const server = browserSync.create();
 const PRODUCTION = yargs.argv.prod;
 
 const paths = {
     styles: {
-        src: ['src/assets/scss/main.scss', 'src/assets/scss/admin.scss'],
+        src: ['src/assets/scss/bundle.scss'],
         dest: 'dist/assets/css'
     },
     images: {
@@ -28,15 +25,8 @@ const paths = {
         dest: 'dist/assets/images'
     },
     scrips: {
-        src: ['src/assets/js/bundle.js', 'src/assets/js/admin.js', 'src/assets/js/customize-preview.js'],
+        src: ['src/assets/js/bundle.js'],
         dest: 'dist/assets/js'
-    },
-    plugins: {
-        src: ['../../plugins/_themename-metaboxes/packaged/*',
-            '../../plugins/_themename-shortcodes/packaged/*',
-            '../../plugins/_themename-post-types/packaged/*'
-        ],
-        dest: 'lib/plugins'
     },
     other: {
         src: ['src/assets/**/*', '!src/assets/{images,js,scss}', '!src/assets/{images, js, scss}/**/*'],
@@ -49,20 +39,6 @@ const paths = {
         ],
         dest: 'packaged'
     }
-}
-
-//Task for server creation
-export const serve = (done) => {
-    server.init({
-        proxy: "http://localhost/JAR/my_wordpresstheme/myfirsttheme/"
-    });
-    done();
-}
-
-//Refresh the browser
-export const reload = (done) => {
-    server.reload();
-    done();
 }
 
 //Forced delete
@@ -78,17 +54,15 @@ export const styles = () => {
             compatibility: 'ie8'
         })))
         .pipe(gulpif(!PRODUCTION, sourcemaps.write()))
-        .pipe(gulp.dest(paths.styles.dest))
-        .pipe(server.stream());
+        .pipe(gulp.dest(paths.styles.dest));
 }
 
 //For running the watch scss folder
 export const watch = () => {
-    gulp.watch('src/assets/scss/**/*.scss', styles);
-    gulp.watch('src/assets/js/**/*.js', gulp.series(scripts, reload));
-    gulp.watch('**/*.php', reload);
-    gulp.watch(paths.images.src, gulp.series(images, reload));
-    gulp.watch(paths.other.src, gulp.series(copy, reload));
+    gulp.watch(['src/assets/scss/**/*.scss', 'includes/**/*.scss'], styles);
+    gulp.watch(['src/assets/js/**/*.js', 'includes/**/*.js'], scripts);
+    gulp.watch(paths.images.src, images);
+    gulp.watch(paths.other.src, copy);
 }
 
 //For minifying all images and sending the resulting image to the assets folder
@@ -137,25 +111,21 @@ export const copy = () => {
         .pipe(gulp.dest(paths.other.dest));
 }
 
-
-//For copying plugin production files to selected folder form src to dist
-export const copyPlugins = () => {
-    return gulp.src(paths.plugins.src)
-        .pipe(gulp.dest(paths.plugins.dest));
-}
-
 //Task for compresss theme zip for users
 export const compress = () => {
-    return gulp.src(paths.package.src)
-        .pipe(gulpif((file) => (file.relative.split('.').pop() !== 'zip'), replace('_themename', info.name)))
-        .pipe(zip(`${info.name}.zip`))
+    return gulp.src(paths.package.src, {
+            base: '../'
+        })
+        .pipe(replace('_pluginname', info.name))
+        .pipe(replace('_themename', info.theme))
+        .pipe(zip(`${info.theme}-${info.name.replace("_", "-")}.zip`))
         .pipe(gulp.dest(paths.package.dest));
 }
 
 //For running tasks concurrently
-export const dev = gulp.series(clean, gulp.parallel(styles, scripts, images, copy), serve, watch);
+export const dev = gulp.series(clean, watch);
 
-export const build = gulp.series(clean, gulp.parallel(styles, scripts, images, copy), copyPlugins);
+export const build = gulp.series(clean);
 
 export const bundle = gulp.series(build, compress);
 

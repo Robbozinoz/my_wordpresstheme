@@ -22,6 +22,7 @@ myfirsttheme/wp-license.txt
 myfirsttheme/wp-content/themes/firsttheme/node_modules/
 myfirsttheme/wp-content/plugins/_themename-metaboxes/node_modules/
 myfirsttheme/wp-content/plugins/_themename-shortcodes/node_modules/
+myfirsttheme/wp-content/plugins/_themename-post-types/node_modules/
 firsttheme-master/
 docs/
 /index.php
