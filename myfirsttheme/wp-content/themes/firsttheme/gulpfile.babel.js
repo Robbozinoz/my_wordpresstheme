@@ -13,12 +13,18 @@ import browserSync from 'browser-sync';
 import zip from 'gulp-zip';
 import replace from 'gulp-replace';
 import info from './package.json';
+import rename from 'gulp-rename';
 
 
 const server = browserSync.create();
 const PRODUCTION = yargs.argv.prod;
 
 const paths = {
+    rename: {
+        src: ['archive-_themename_portfolio.php', 'single-_themename_portfolio.php',
+            'taxonomy-_themename_project_type.php', 'taxonomy-_themename_skills.php'
+        ]
+    },
     styles: {
         src: ['src/assets/scss/main.scss', 'src/assets/scss/admin.scss'],
         dest: 'dist/assets/css'
@@ -45,25 +51,41 @@ const paths = {
     package: {
         src: ['**/*', '!.vscode', '!.vscode', '!myfirsttheme_space.code-workspace',
             '!node_modules{,/**}', '!packaged{,/**}', '!src{,/**}', '!.babelrc',
-            '!.gitignore', '!gulpfile.babel.js', '!package.json', '!package-lock.json'
+            '!.gitignore', '!gulpfile.babel.js', '!package.json', '!package-lock.json',
+            '!archive-_themename_portfolio.php', '!single-_themename_portfolio.php',
+            '!taxonomy-_themename_project_type.php', '!taxonomy-_themename_skills.php'
         ],
         dest: 'packaged'
     }
-}
+};
 
+//Replace taxonmoy and post type file names for dist
+export const replace_filenames = () => {
+    return gulp.src(paths.rename.src).pipe(rename((path) => {
+            path.basename = path.basename.replace("_themename", info.name);
+        }))
+        .pipe(gulp.dest('./'));
+};
+
+//Once build has run the filename replace and send to dist delete duplicate renamed files from root folder
+export const delete_replaced_filenames = () => {
+    return del(
+        paths.rename.src.map(filename => filename.replace("_themename", info.name))
+    );
+};
 //Task for server creation
 export const serve = (done) => {
     server.init({
         proxy: "http://localhost/JAR/my_wordpresstheme/myfirsttheme/"
     });
     done();
-}
+};
 
 //Refresh the browser
 export const reload = (done) => {
     server.reload();
     done();
-}
+};
 
 //Forced delete
 export const clean = () => del(['dist']);
@@ -80,7 +102,7 @@ export const styles = () => {
         .pipe(gulpif(!PRODUCTION, sourcemaps.write()))
         .pipe(gulp.dest(paths.styles.dest))
         .pipe(server.stream());
-}
+};
 
 //For running the watch scss folder
 export const watch = () => {
@@ -89,14 +111,14 @@ export const watch = () => {
     gulp.watch('**/*.php', reload);
     gulp.watch(paths.images.src, gulp.series(images, reload));
     gulp.watch(paths.other.src, gulp.series(copy, reload));
-}
+};
 
 //For minifying all images and sending the resulting image to the assets folder
 export const images = () => {
     return gulp.src(paths.images.src)
         .pipe(gulpif(PRODUCTION, imagemin()))
         .pipe(gulp.dest(paths.images.dest));
-}
+};
 
 //For compiling js scripts
 export const scripts = () => {
@@ -129,20 +151,20 @@ export const scripts = () => {
         }))
         //.pipe(gulpif(PRODUCTION, uglify())) //Not required ni Webpack minification
         .pipe(gulp.dest(paths.scrips.dest));
-}
+};
 
 //For copying production files to selected folder form src to dist
 export const copy = () => {
     return gulp.src(paths.other.src)
         .pipe(gulp.dest(paths.other.dest));
-}
+};
 
 
 //For copying plugin production files to selected folder form src to dist
 export const copyPlugins = () => {
     return gulp.src(paths.plugins.src)
         .pipe(gulp.dest(paths.plugins.dest));
-}
+};
 
 //Task for compresss theme zip for users
 export const compress = () => {
@@ -150,14 +172,14 @@ export const compress = () => {
         .pipe(gulpif((file) => (file.relative.split('.').pop() !== 'zip'), replace('_themename', info.name)))
         .pipe(zip(`${info.name}.zip`))
         .pipe(gulp.dest(paths.package.dest));
-}
+};
 
 //For running tasks concurrently
 export const dev = gulp.series(clean, gulp.parallel(styles, scripts, images, copy), serve, watch);
 
 export const build = gulp.series(clean, gulp.parallel(styles, scripts, images, copy), copyPlugins);
 
-export const bundle = gulp.series(build, compress);
+export const bundle = gulp.series(build, replace_filenames, compress, delete_replaced_filenames);
 
 //Set default task to development task
 export default dev;
