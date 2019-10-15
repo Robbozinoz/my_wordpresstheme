@@ -25,7 +25,7 @@ function _themename_content_width()
         $layout = _themename_meta($post->ID, '__themename_post_layout', 'full');
         $sidebar = is_active_sidebar('primary-sidebar');
 
-        //If condition to apply full scrneeen width tp post if no active widgets in sidebar
+        //If condition to apply full screen width tp post if no active widgets in sidebar
         if ($layout === 'sidebar' && !$sidebar) {
             $layout = 'full';
         }
@@ -36,6 +36,40 @@ function _themename_content_width()
 
 add_action('template_redirect', '_themename_content_width');
 
+//Funtion to control image sizes dependant on screen size
+function _themename_image_sizes($sizes, $size, $image_src, $image_meta, $attachement_id)
+{
+    $width = $size[0];
+    global $content_width;
+    global $post;
+    $layout = 'full';
+
+    if (is_single() && $post->post_type === 'post') {
+        //State variable to contain various post meta for use in conditionals and furtehr singe post layout
+        $layout = _themename_meta($post->ID, '__themename_post_layout', 'full');
+        $sidebar = is_active_sidebar('primary-sidebar');
+
+        //If condition to apply full screen width tp post if no active widgets in sidebar
+        if ($layout === 'sidebar' && !$sidebar) {
+            $layout = 'full';
+        }
+    }
+
+    if ($content_width <= $width) {
+        if ($layout === 'full') {
+            $sizes = '(max-width: 862px) calc(100vw - 1.25rem*2 - 0.625rem*2 - 2px), ' . $content_width . 'px';
+        } elseif ($layout === 'sidebar') {
+            $sizes = '(max-width: 640px) calc(100vw - 1.25rem*2 -  0.625rem*2 - 2px), (max-width: 1200px) 
+            calc(100vw - 33.3333vw -0.625*4 - 1.25rem*2 - 2px),' . $content_width . 'px';
+        }
+    } else {
+        $sizes = '(max-width: ' . ($width + 62) . 'px) calc(100vw - 1.25rem*2 - 0.625rem*2 - 2px), ' . $width . 'px';
+    }
+
+    return $sizes;
+}
+
+add_filter('wp_calculate_image_sizes', '_themename_image_sizes', 10, 5);
 
 //To check the delete action and complete 
 function _themename_handle_delete_post()

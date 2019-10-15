@@ -2960,7 +2960,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! c:\laragon\www\JAR\my_wordpresstheme\myfirsttheme\wp-content\themes\firsttheme\src\assets\js\bundle.js */"./src/assets/js/bundle.js");
+module.exports = __webpack_require__(/*! C:\laragon\www\JAR\my_wordpresstheme\myfirsttheme\wp-content\themes\firsttheme\src\assets\js\bundle.js */"./src/assets/js/bundle.js");
 
 
 /***/ }),

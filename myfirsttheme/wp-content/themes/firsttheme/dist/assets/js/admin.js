@@ -107,7 +107,7 @@ console.log('admin');
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! c:\laragon\www\JAR\my_wordpresstheme\myfirsttheme\wp-content\themes\firsttheme\src\assets\js\admin.js */"./src/assets/js/admin.js");
+module.exports = __webpack_require__(/*! C:\laragon\www\JAR\my_wordpresstheme\myfirsttheme\wp-content\themes\firsttheme\src\assets\js\admin.js */"./src/assets/js/admin.js");
 
 
 /***/ })
