@@ -192,7 +192,7 @@ exports.default = strip_tags;
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\laragon\www\JAR\my_wordpresstheme\myfirsttheme\wp-content\themes\firsttheme\src\assets\js\customize-preview.js */"./src/assets/js/customize-preview.js");
+module.exports = __webpack_require__(/*! c:\laragon\www\JAR\my_wordpresstheme\myfirsttheme\wp-content\themes\firsttheme\src\assets\js\customize-preview.js */"./src/assets/js/customize-preview.js");
 
 
 /***/ }),

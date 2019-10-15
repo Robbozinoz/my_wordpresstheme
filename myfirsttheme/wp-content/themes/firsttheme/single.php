@@ -5,9 +5,9 @@ $layout = _themename_meta(get_the_ID(), '__themename_post_layout', 'full');
 $sidebar = is_active_sidebar('primary-sidebar');
 
 //If condition to apply full scrneeen width tp post if no active widgets in sidebar
-//if ($layout === 'sidebar' && !$sidebar) {
-// $layout = 'full';
-//}
+if ($layout === 'sidebar' && !$sidebar) {
+    $layout = 'full';
+}
 ?>
 <!--Addition of classes-->
 <div class="o-container u-margin-bottom-40 o-single-post-<?php echo $layout; ?>">

@@ -9,6 +9,33 @@ require_once('lib/navigation.php');
 require_once('lib/include-plugins.php');
 require_once('lib/comment-callback.php');
 
+//Define php global width variable for content
+if (!isset($content_width)) {
+    $content_width = 800;
+}
+
+//Function to check if the post has a format and template which uses the sidebar and then convert content width to match template
+function _themename_content_width()
+{
+    global $content_width;
+    global $post;
+
+    if (is_single() && $post->post_type === 'post') {
+        //State variable to contain various post meta for use in conditionals and furtehr singe post layout
+        $layout = _themename_meta($post->ID, '__themename_post_layout', 'full');
+        $sidebar = is_active_sidebar('primary-sidebar');
+
+        //If condition to apply full scrneeen width tp post if no active widgets in sidebar
+        if ($layout === 'sidebar' && !$sidebar) {
+            $layout = 'full';
+        }
+        //Ternary operator to re-adjust content width global variable
+        $content_width = $layout === 'full' ? 800 : 738;
+    }
+}
+
+add_action('template_redirect', '_themename_content_width');
+
 
 //To check the delete action and complete 
 function _themename_handle_delete_post()
