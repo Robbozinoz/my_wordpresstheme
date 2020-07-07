@@ -30,7 +30,7 @@
     "gulp-sourcemaps": "^2.6.5",
     "gulp-zip": "^5.0.0",
     "install": "^0.13.0",
-    "npm": "^6.10.3",
+    "npm": "^6.14.6",
     "npm-install-peers": "^1.2.1",
     "vinyl-named": "^1.1.0",
     "webpack-stream": "^5.2.1",
